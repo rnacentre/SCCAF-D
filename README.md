@@ -20,7 +20,7 @@ To use SCCAF-D ensure the SCCAF package is installed:
 ```
 conda install sccaf
 ```
-OR
+Or
 
 ```
 pip install sccaf
