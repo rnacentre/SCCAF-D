@@ -35,10 +35,13 @@ Usage within R environment
 --
 ```
 #Set a working directory and place the files used for analysis in this directory
+
 #load SCCAF_D.R function
 source('./SCCAF_D.R')
+
 #selection the parameters to conduct deconvolution
 param=c("bulk.rds",'single-reference.rds',"none","sc","TMM","TMM",'DWLS',10000,"none",1,'T')
+
 #python_home:Specify the python to use
 results <- SCCAF_D(param,python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
 ```
