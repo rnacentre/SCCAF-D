@@ -48,6 +48,7 @@ results <- SCCAF_D(param,python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/
 ```
 
 **How to cite**
+
 For citation and further information please refer to this:
 Feng,S *et al*. Alleviating batch effects in cell type deconvolution.
 The current version is not acceptable.
