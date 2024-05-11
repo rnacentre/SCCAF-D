@@ -36,6 +36,7 @@ Usage within R environment
 ```
 #Set a working directory and place the files used for analysis in this directory
 setwd('***')
+
 #load SCCAF_D.R function
 source('./SCCAF_D.R')
 
@@ -45,5 +46,6 @@ param=c("bulk.rds",'single-reference.rds',"none","sc","TMM","TMM",'DWLS',10000,"
 #python_home:Specify the python to use
 results <- SCCAF_D(param,python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
 ```
+
 If you use SCCAF-D, please refer to our article ‘Alleviating batch effects in cell type deconvolution’.
 
