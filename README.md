@@ -35,7 +35,7 @@ Usage within R environment
 --
 ```
 #Set a working directory and place the files used for analysis in this directory
-
+setwd('***')
 #load SCCAF_D.R function
 source('./SCCAF_D.R')
 
