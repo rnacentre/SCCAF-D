@@ -47,8 +47,8 @@ param=c("bulk.rds",'single-reference.rds',"none","sc","TMM","TMM",'DWLS',10000,"
 results <- SCCAF_D(param,python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
 ```
 
-**How to cite**
-
+How to cite
+-----
 For citation and further information please refer to this:
 Feng,S *et al*. Alleviating batch effects in cell type deconvolution.
 The current version is not acceptable.
