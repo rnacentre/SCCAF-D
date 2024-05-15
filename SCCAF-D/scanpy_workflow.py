@@ -1,5 +1,7 @@
 def scanpy_workflow(ad,pathway,batch_key='sampleID',span=0.3):
     import scanpy as sc
+    import pandas as pd
+    import SCCAF
     ad=sc.read(ad)
     ad.layers['counts']=ad.X.copy()
     sc.pp.normalize_total(ad,target_sum=1e4)
@@ -23,7 +25,7 @@ def scanpy_workflow(ad,pathway,batch_key='sampleID',span=0.3):
     ad.obsm['X_umapRaw'] = ad.obsm['X_umap']
     sc.external.pp.harmony_integrate(ad, key='sampleID', basis='X_pca', adjusted_basis='X_pca_harmony',max_iter_harmony=20)
 
-    y_prob, y_pred, y_test, clf, cvsm, acc = SCCAF_assessment(ad.obsm['X_pca_harmony'], ad.obs['cellType'],n=500)
+    y_prob, y_pred, y_test, clf, cvsm, acc = SCCAF.SCCAF_assessment(ad.obsm['X_pca_harmony'], ad.obs['cellType'],n=500)
     prob=pd.DataFrame(y_prob,columns=clf.classes_)
     pred=pd.DataFrame(y_pred,columns=['predict'])
     sccaf=pd.concat([pred,prob],axis=1)
