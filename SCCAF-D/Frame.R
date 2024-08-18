@@ -86,9 +86,6 @@ Framework<-function(deconv_type,
 	# C is the reference exprs (average for each cell type)
 	# P is the preassigned proportion for the pseudo-bulk
 	# pDataC is the meta-data for the reference
-#     saveRDS(T, 'T.rds')
-#     saveRDS(C, 'C.rds')
-#     saveRDS(pDataC, 'pDataC.rds')
 	RESULTS = Deconvolution(T = T, 
 							C = C, 
 							method = method, 

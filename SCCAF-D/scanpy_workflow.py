@@ -21,7 +21,6 @@ def scanpy_workflow(ad,pathway,batch_key='sampleID',span=0.3):
     )
     sc.tl.pca(ad, svd_solver='arpack', use_highly_variable=True)
     sc.external.pp.harmony_integrate(ad, key='sampleID', basis='X_pca', adjusted_basis='X_pca_harmony',max_iter_harmony=50)
-
     y_prob, y_pred, y_test, clf, cvsm, acc = SCCAF.SCCAF_assessment(ad.obsm['X_pca_harmony'], ad.obs['cellType'],n=500)
     prob=pd.DataFrame(y_prob,columns=clf.classes_)
     pred=pd.DataFrame(y_pred,columns=['predict'])

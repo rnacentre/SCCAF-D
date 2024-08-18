@@ -3,16 +3,20 @@
 #' @details
 #' 
 #' @param param: a list of 11 parameters:
-#' 1: bulk name
-#' 2: reference dataset name
-#' 3: Transformation: none (defalt), log, sqrt, vst
-#' 4: deconvolution type: bulk, sc
-#' 5: Normalization for C, normalization
-#' 6: Normalization for T, marker strategy
-#' 7: Deconvolution method
-#' 8: number of cells used
-#' 9: remove cell type or not (none: default)
-#' 10: number of cores used.
+#' 1: bulk name: The bulk dataset used to conduct deconvolution.
+#' 2: reference dataset name: The single-cell dataset used to conduct deconvolution.
+#' 3: Transformation: none (defalt), log, sqrt, vst. The choice whether to transform the dataset both bulk and single-cell dataset.
+#' 4: deconvolution type: bulk, sc. The different deconvolution types. We divide the methods into bulk and sc methods refer to the reference source, 
+#' like bulk methods includes the CIBERSORT, FARDEEP (reference is either a signature of sorted cell types or a marker gene list), 
+#' or the sc methods includes MuSiC, DWLS using the single-cell dataset.
+
+#' 5: Normalization for C, normalization. Normalize the single-cell dataset.
+#' 6: Normalization for T, marker strategy. Normalize the bulk dataset, if deconvolution type choose the bulk, this parameter should set 'all',
+#' if choose the 'sc',the parameter should set the same normalization as the bulk dataset.
+#' 7: Deconvolution method. The different deconvolution algorithms.
+#' 8: number of cells used. How many cells used to produce the pseudobulk. this parameter is used in pseudobulk process.
+#' 9: remove cell type or not (none: default). Remove a cell type in bulk and singl-cell dataset before deconvolution.
+#' 10: number of cores used. 
 #' 11: Normalize first (T) or Transform first(F).
 #' 
 #' @return
@@ -31,7 +35,6 @@ SCCAF_D = function(param, batch_key='sampleID',span=0.3,python_home = Sys.which(
     if (!reticulate::py_module_available("SCCAF")) {
         stop("python module SCCAF does not seem to be installed; - try running 'pip install SCCAF'")
     }
-    # reticulate::source_python("/home/feng_shuo/Rscript/sccaf.py")
     reticulate::source_python("./scanpy_workflow.py")
     #####
     if (length(param) != 11) {
@@ -88,9 +91,6 @@ SCCAF_D = function(param, batch_key='sampleID',span=0.3,python_home = Sys.which(
     X1 = read_bulk(bulk)
     X2 = read_data(paste(pathway,'/',dataset1,'_',"sccaf-reference",".rds",sep=""))
     ####
-    #####
-    # path = paste(getwd(), "/sccaf-d-results", sep = "")
-    #####
     if (FALSE) {
         X2 <- QC(X2)
     }
