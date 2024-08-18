@@ -13,7 +13,7 @@ In SCCAF-D, the metadata associated with single-cell data must contain three ess
 
 By including these three key metadata columns in the single-cell datasets, SCCAF-D can effectively perform cell type deconvolution and provide valuable insights into the cellular composition and heterogeneity within the analyzed samples.
 
-The concrete parameters include a list of 11 parameters:
+**The concrete parameters include a list of 11 parameters**:
 
 1: **bulk name**: The bulk dataset used to conduct deconvolution.
 
