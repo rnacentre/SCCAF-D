@@ -15,31 +15,21 @@ By including these three key metadata columns in the single-cell datasets, SCCAF
 
 **The concrete parameters include a list of 11 parameters**:
 
-1: **Bulk name**: The bulk dataset used to conduct deconvolution.
+**[1] Bulk name**: The name of bulk data used.
+**[2] Reference dataset name**: The name of reference data used.
+**[3] Transformation**: The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
+**[4] Deconvolution type**: Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while sc methods, like MuSiC and DWLS, rely on single-cell datasets.
+**[5] Normalization for C, normalization**: C denotes single-cell reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
+**[6] Normalization for T, marker strategy**: T refers to bulk data, with normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data.
+**[7] Deconvolution method**: Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
 
-2: **Reference dataset name**: The single-cell dataset used to conduct deconvolution.
+**[8] Number of cells used**: The number of cells selected during the preparation of simulated 'pseudobulk' samples from single-cell transcriptomic data.
 
-3: **Transformation**: none (defalt), log, sqrt, vst. The choice whether to transform the dataset both bulk and single-cell dataset.
+**[9] Remove cell type or not**: Whether to remove any cell types from the reference data.
 
-4: **Deconvolution type**: bulk, sc. The different deconvolution types. We divide the methods into bulk and sc methods refer to the reference source, 
-like bulk methods includes the CIBERSORT, FARDEEP (reference is either a signature of sorted cell types or a marker gene list), 
-or the sc methods includes MuSiC, DWLS using the single-cell dataset.
+**[10] Number of cores used**: Select the number of cores to utilize for conducting deconvolution.
 
-5: **Normalization for C, normalization**. Normalize the single-cell dataset.
-
-6: **Normalization for T, marker strategy**. Normalize the bulk dataset, if deconvolution type choose the bulk, this parameter should set 'all',
-if choose the 'sc',the parameter should set the same normalization as the bulk dataset.
-
-7: **Deconvolution method**. The different deconvolution algorithms.
-
-8: **Number of cells used**. How many cells used to produce the pseudobulk. this parameter is used in pseudobulk process.
-
-9: **Remove cell type or not (none: default)**. Remove a cell type in bulk and singl-cell dataset before deconvolution.
-
-10: **Number of cores used**. 
-
-11: **Normalize first (T) or Transform first(F)**.
-
+**[11] Normalization first (T) or Transformation first (F)**: Whether to perform data normalization or transformation first.
 
 
 ----
