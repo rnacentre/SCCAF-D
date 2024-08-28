@@ -16,11 +16,17 @@ By including these three key metadata columns in the single-cell datasets, SCCAF
 **The concrete parameters include a list of 11 parameters**:
 
 **[1] Bulk name**: The name of bulk data used.
+
 **[2] Reference dataset name**: The name of reference data used.
+
 **[3] Transformation**: The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
+
 **[4] Deconvolution type**: Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while sc methods, like MuSiC and DWLS, rely on single-cell datasets.
+
 **[5] Normalization for C, normalization**: C denotes single-cell reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
+
 **[6] Normalization for T, marker strategy**: T refers to bulk data, with normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data.
+
 **[7] Deconvolution method**: Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
 
 **[8] Number of cells used**: The number of cells selected during the preparation of simulated 'pseudobulk' samples from single-cell transcriptomic data.
