@@ -15,13 +15,13 @@ By including these three key metadata columns in the single-cell datasets, SCCAF
 
 **The concrete parameters include a list of 11 parameters**:
 
-1: **bulk name**: The bulk dataset used to conduct deconvolution.
+1: **Bulk name**: The bulk dataset used to conduct deconvolution.
 
-2: **reference dataset name**: The single-cell dataset used to conduct deconvolution.
+2: **Reference dataset name**: The single-cell dataset used to conduct deconvolution.
 
 3: **Transformation**: none (defalt), log, sqrt, vst. The choice whether to transform the dataset both bulk and single-cell dataset.
 
-4: **deconvolution type**: bulk, sc. The different deconvolution types. We divide the methods into bulk and sc methods refer to the reference source, 
+4: **Deconvolution type**: bulk, sc. The different deconvolution types. We divide the methods into bulk and sc methods refer to the reference source, 
 like bulk methods includes the CIBERSORT, FARDEEP (reference is either a signature of sorted cell types or a marker gene list), 
 or the sc methods includes MuSiC, DWLS using the single-cell dataset.
 
@@ -32,11 +32,11 @@ if choose the 'sc',the parameter should set the same normalization as the bulk d
 
 7: **Deconvolution method**. The different deconvolution algorithms.
 
-8: **number of cells used**. How many cells used to produce the pseudobulk. this parameter is used in pseudobulk process.
+8: **Number of cells used**. How many cells used to produce the pseudobulk. this parameter is used in pseudobulk process.
 
-9: **remove cell type or not (none: default)**. Remove a cell type in bulk and singl-cell dataset before deconvolution.
+9: **Remove cell type or not (none: default)**. Remove a cell type in bulk and singl-cell dataset before deconvolution.
 
-10: **number of cores used**. 
+10: **Number of cores used**. 
 
 11: **Normalize first (T) or Transform first(F)**.
 
