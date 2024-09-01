@@ -53,7 +53,7 @@ pip install sccaf
 
 **You will also need to install another packages:**
 ```
-packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reticulate",
+packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reticulate","pheatmap",
 			  "Matrix","matrixStats",
 			  "gtools",
 			  "foreach","doMC","doSNOW", 
