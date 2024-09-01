@@ -15,27 +15,28 @@ By including these three key metadata columns in the single-cell datasets, SCCAF
 
 **The concrete parameters include a list of 11 parameters**:
 
-**[1] Bulk name**: The name of bulk data used.
+**Param[1]**: string, The name of bulk data used to be deconvolved.
 
-**[2] Reference dataset name**: The name of reference data used.
+**Param[2]**: string, The name of reference data used for deconvolution.
 
-**[3] Transformation**: The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
+**Param[3]**: Transformation: The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
 
-**[4] Deconvolution type**: Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while sc methods, like MuSiC and DWLS, rely on single-cell datasets.
+**Param[4]**: Deconvolution type of bulk or single-cell (sc): Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while ‘sc’ methods, like MuSiC and DWLS, use single-cell datasets as reference data.
 
-**[5] Normalization for C, normalization**: C denotes single-cell reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
+**Param[5]**: Normalization for C, normalization: C denotes single-cell reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
 
-**[6] Normalization for T, marker strategy**: T refers to bulk data, with normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data.
+**Param[6]**: Normalization for T, marker strategy: T refers to bulk data, with normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data.
 
-**[7] Deconvolution method**: Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
+**Param[7]**: Deconvolution method: Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
 
-**[8] Number of cells used**: The number of cells selected during the preparation of simulated 'pseudobulk' samples from single-cell transcriptomic data.
+**Param[8]**: Number of cells used: The number of cells selected during the preparation of simulated 'pseudobulk' from single-cell data.
 
-**[9] Remove cell type or not**: Whether to remove any cell types from the reference data.
+**Param[9]**: Remove cell type or not: Whether to remove any cell types from the reference data.
 
-**[10] Number of cores used**: Select the number of cores to utilize for conducting deconvolution.
+**Param[10]**: Number of cores used: Select the number of cores to be used for deconvolution.
 
-**[11] Normalization first (T) or Transformation first (F)**: Whether to perform data normalization or transformation first.
+**Param[11]**:  Normalization first (T) or Transformation first (F): Whether to perform data normalization or transformation first.
+
 
 
 ----
@@ -50,9 +51,23 @@ Or
 pip install sccaf
 ```
 
-**You will also need to install reticulate package:**
+**You will also need to install another packages:**
 ```
-install.packages('reticulate')
+packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reticulate",
+			  "Matrix","matrixStats",
+			  "gtools",
+			  "foreach","doMC","doSNOW", #for parallelism
+			  "Seurat","sctransform", #sc-specific normalization
+			  "nnls","FARDEEP","MASS","glmnet") #bulk deconvolution methods
+
+for (i in packages){ install.packages(i, character.only = TRUE)}
+
+packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase') #last two are required by DWLS and MuSiC, respectively.
+for (i in packages1){ BiocManager::install(i, character.only = TRUE)}
+
+# Dependencies for CellMix: 'NMF', 'csSAM', 'GSEABase', 'annotate', 'genefilter', 'preprocessCore', 'limSolve', 'corpcor', 'graph', 'BiocInstaller'
+packages2 = c('NMF','csSAM','limSolve','corpcor')
+for (i in packages2){ install.packages(i, character.only = TRUE)}
 ```
 Example
 Usage within R environment
