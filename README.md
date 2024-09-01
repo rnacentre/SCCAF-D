@@ -58,7 +58,7 @@ packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reti
 			  "gtools",
 			  "foreach","doMC","doSNOW", #for parallelism
 			  "Seurat","sctransform", #sc-specific normalization
-			  "nnls","FARDEEP","MASS","glmnet") #bulk deconvolution methods
+			  "nnls","MASS","glmnet") #bulk deconvolution methods
 
 for (i in packages){ install.packages(i, character.only = TRUE)}
 
