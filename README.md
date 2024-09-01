@@ -56,18 +56,15 @@ pip install sccaf
 packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reticulate",
 			  "Matrix","matrixStats",
 			  "gtools",
-			  "foreach","doMC","doSNOW", #for parallelism
-			  "Seurat","sctransform", #sc-specific normalization
-			  "nnls","MASS","glmnet") #bulk deconvolution methods
+			  "foreach","doMC","doSNOW", 
+			  "Seurat","sctransform", 
+			  "nnls","MASS","glmnet") 
 
 for (i in packages){ install.packages(i, character.only = TRUE)}
 
-packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase') #last two are required by DWLS and MuSiC, respectively.
+packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase')
 for (i in packages1){ BiocManager::install(i, character.only = TRUE)}
 
-# Dependencies for CellMix: 'NMF', 'csSAM', 'GSEABase', 'annotate', 'genefilter', 'preprocessCore', 'limSolve', 'corpcor', 'graph', 'BiocInstaller'
-packages2 = c('NMF','csSAM','limSolve','corpcor')
-for (i in packages2){ install.packages(i, character.only = TRUE)}
 ```
 Example
 Usage within R environment
