@@ -62,7 +62,7 @@ packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reti
 
 for (i in packages){ install.packages(i, character.only = TRUE)}
 
-packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase')
+packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase','sparseMatrixStats')
 for (i in packages1){ BiocManager::install(i, character.only = TRUE)}
 
 ```
