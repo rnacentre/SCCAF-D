@@ -15,27 +15,20 @@ By including these three key metadata columns in the single-cell datasets, SCCAF
 
 **The concrete parameters include a list of 11 parameters**:
 
-**Param[1]**: string, The name of bulk data used to be deconvolved.
+**Param[1]**: string. The name of bulk data used to be deconvolved.
+**Param[2]**: string. The name of reference data used for deconvolution.
+**Param[3]**: string. The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
+**Param[4]**: string. Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while ‘sc’ methods, like MuSiC and DWLS, use single-cell datasets as reference data.
+**Param[5]**: string. Normalization for reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
+**Param[6]**: string. Normalization for bulk data. With normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data. If using the bulk methods, this selection should be ‘all’.
+**Param[7]**: string. Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
 
-**Param[2]**: string, The name of reference data used for deconvolution.
+**Param[8]**: string. The number of cells selected during the preparation of simulated 'pseudobulk' from single-cell data.
 
-**Param[3]**: Transformation: The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
+**Param[9]**: string. Whether to remove any cell types from the reference data.
 
-**Param[4]**: Deconvolution type of bulk or single-cell (sc): Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while ‘sc’ methods, like MuSiC and DWLS, use single-cell datasets as reference data.
-
-**Param[5]**: Normalization for C, normalization: C denotes single-cell reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
-
-**Param[6]**: Normalization for T, marker strategy: T refers to bulk data, with normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data.
-
-**Param[7]**: Deconvolution method: Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
-
-**Param[8]**: Number of cells used: The number of cells selected during the preparation of simulated 'pseudobulk' from single-cell data.
-
-**Param[9]**: Remove cell type or not: Whether to remove any cell types from the reference data.
-
-**Param[10]**: Number of cores used: Select the number of cores to be used for deconvolution.
-
-**Param[11]**:  Normalization first (T) or Transformation first (F): Whether to perform data normalization or transformation first.
+**Param[10]**: string. Select the number of cores to be used for deconvolution.
+**Param[11]**: string. Whether to perform data normalization or transformation first. T means the normalization first. F means the transformation first.
 
 
 
