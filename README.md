@@ -70,6 +70,7 @@ BiocManager::install(bioc_packages)
 ```
 
 **Note**: Installing the required packages may take some time, depending on the user's R environment and network conditions. The installation process could take several minutes or even longer, potentially up to an hour.
+
 **Note**: if user wants to use other 24 deconvolution methods (except for DWLS) in SCCAF-D framework, please install packages mentioned in <a href="https://github.com/rnacentre/SCCAF-D/blob/main/install.md"> install.md </a> file. 
 ## Example Usage in R
 
