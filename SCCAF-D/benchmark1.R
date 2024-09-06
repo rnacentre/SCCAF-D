@@ -3,7 +3,7 @@
 
 options(stringsAsFactors = FALSE)
 set.seed(24)
-require(limma); require(dplyr); require(pheatmap); require(Matrix); require(sparseMatrixStats)
+require(limma); require(dplyr); require(pheatmap); require(Matrix); require(sparseMatrixStats);require(reshape2)
 
 # Added parameters: sampleCT = FALSE, propsample = TRUE, pct.var=30
 # Pseudo bulk generator

@@ -366,9 +366,8 @@ run_bseqsc<-function(T, C, T.eset, C.eset, ...){
 	return(RESULTS)
 }
 run_DWLS<-function(T, C, phenoDataC, elem, ...){
-
-
-	if(! dir.exists(path)){ 
+    path=paste(getwd(),"/sccaf-d/",sep="")
+	if(!dir.exists(path)){ 
 		dir.create(path)
 
 	} 

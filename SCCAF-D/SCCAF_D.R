@@ -25,72 +25,39 @@
 #' @batch_key scanpy: scanpy.pp.highly_variable_genes
 #' @span: scanpy: scanpy.pp.highly_variable_genes
 #' @ python_home: Specify the python to use
-SCCAF_D = function(param, batch_key='sampleID',span=0.3,python_home = Sys.which("python")) {
+SCCAF_D=function(bulk=bulk,reference=reference,transformation='none',deconv_type='sc',normalization_C='TMM',normalization_T='TMM',marker_strategy='all',method='DWLS',number_cells=10000,to_remove='none',num_cores=1,NormTrans=TRUE,return_expr=FALSE,batch_key='sampleID',span=0.3,python_home = Sys.which("python")) {
     reticulate::use_python(python_home)
-    source("/home/feng_shuo/deconvolution/SCCAF-D/benchmark1.R")
-    source("/home/feng_shuo/deconvolution/SCCAF-D/deconvolution1.R")
-    source("/home/feng_shuo/deconvolution/SCCAF-D/Frame.R")
-    source("/home/feng_shuo/deconvolution/SCCAF-D/DWLS.R")
+    source("benchmark1.R")
+    source("deconvolution1.R")
+    source("Frame.R")
+    source("DWLS.R")
+    source("expr.R")
     #####
     if (!reticulate::py_module_available("SCCAF")) {
         stop("python module SCCAF does not seem to be installed; - try running 'pip install SCCAF'")
     }
-    reticulate::source_python("./scanpy_workflow.py")
+    reticulate::source_python("/home/feng_shuo/deconvolution/SCCAF-D/scanpy_workflow.py")
     #####
-    if (length(param) != 11) {
-        print("Please check that all required parameters are indicated or are correct")
-        print("Example usage for bulk deconvolution methods: 'Rscript Master_deconvolution.R baron none bulk TMM all nnls 100 none 1'")
-        print("Example usage for single-cell deconvolution methods: 'Rscript Master_deconvolution.R baron none sc TMM TMM MuSiC 100 none 1'")
-        stop()
-    }
-    flag = FALSE
-    bulk = param[1]
-    dataset = param[2]
-    transformation = param[3]
-    deconv_type = param[4]
-    if (deconv_type == "bulk") {
-        normalization = param[5]
-        marker_strategy = param[6]
-    }
-    else if (deconv_type == "sc") {
-        normalization_scC = param[5]
-        normalization_scT = param[6]
-    }
-    else {
-        print("Please enter a valid deconvolution framework")
-        stop()
-    }
-    method = param[7]
-    number_cells = round(as.numeric(param[8]), digits = -2)
-    to_remove = param[9]
-    num_cores = min(as.numeric(param[10]), parallel::detectCores() - 
-        1)
-    if (param[11] == "T") {
-        NormTrans = TRUE
-    }
-    else {
-        NormTrans = FALSE
-    }
-    ###
     pathway=getwd()
     ####
-    dataset1=strsplit(dataset,'\\.')[[1]][1]
+    reference1=strsplit(reference,'\\.')[[1]][1]
     ####
-    X2_1 = readRDS(dataset)
-    sceasy::convertFormat(X2_1, from = "seurat", to = "anndata",main_layer = "counts",outFile = paste(dataset1,'.h5',sep=''))
+    X2_1 = readRDS(reference)
+    sceasy::convertFormat(X2_1, from = "seurat", to = "anndata",main_layer = "counts",outFile = paste(reference1,'.h5',sep=''))
     ###
-    ad=paste(pathway,'/',dataset1,'.h5',sep='')
+    ad=paste(pathway,'/',reference1,'.h5',sep='')
     #####selection cells--scanpy
     scanpy_workflow(ad,pathway,batch_key=batch_key,span=span)
     ###selection top100 cells for each cell type
-    reference = selection_cells(pathway,dataset1,dataset)
+    reference = selection_cells(pathway,reference1,reference)
     ###
     print(table(reference$cellType))
     ####
     ####read data
     X1 = read_bulk(bulk)
-    X2 = read_data(paste(pathway,'/',dataset1,'_',"sccaf-reference",".rds",sep=""))
+    X2 = read_data(paste(pathway,'/',reference1,'_',"sccaf-reference",".rds",sep=""))
     ####
+    flag = FALSE
     if (FALSE) {
         X2 <- QC(X2)
     }
@@ -107,7 +74,24 @@ SCCAF_D = function(param, batch_key='sampleID',span=0.3,python_home = Sys.which(
     colnames(P) <- colnames(X1$data)
     Xtest <- list(T = X1$data, P = P)
     #####
-    return(Framework(deconv_type, NormTrans, Xtest, Xtrain, normalization, 
-        normalization_scT, normalization_scC, transformation, 
-        marker_strategy, to_remove, Xtest$P, method, pDataC))
+    cell_proportion=Framework(deconv_type, NormTrans, Xtest, Xtrain, normalization, 
+        normalization_T, normalization_C, transformation, 
+        marker_strategy, to_remove, Xtest$P, method, pDataC)
+    ###expression matrix
+    ref=X2$data
+    ref = t(as.matrix(ref))
+    subBulk=X1$data
+    subBulk = t(subBulk)
+    reshaped_data <- dcast(cell_proportion, formula = tissue ~ CT, value.var = "observed_values")
+    # set CT rowname
+    rownames(reshaped_data) <- reshaped_data$tissue
+    reshaped_data$tissue <- NULL  #remove CT
+    expr=deconvExp(reference = ref, cell.state.labels =pDataC$cellType, bluk = subBulk, cell.state.fraction = reshaped_data)
+    
+    if (!return_expr){
+        return(cell_proportion)
+    }else {
+        return(list('cell_pro'=cell_proportion,'expr'=expr))
+    }
+    
 }

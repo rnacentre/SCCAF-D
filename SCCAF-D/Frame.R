@@ -19,8 +19,8 @@ Framework<-function(deconv_type,
 					Xtest,
 					Xtrain,
 					normalization,
-					normalization_scT,
-					normalization_scC,
+					normalization_T,
+					normalization_C,
 					transformation,
 					marker_strategy,
 					to_remove,
@@ -58,8 +58,8 @@ Framework<-function(deconv_type,
 		}
 	} else if (deconv_type == "sc"){
 		if(NormTrans){
-			T = Scaling(Xtest$T, normalization_scT)
-			C = Scaling(Xtrain$train_cellID, normalization_scC)
+			T = Scaling(Xtest$T, normalization_T)
+			C = Scaling(Xtrain$train_cellID, normalization_C)
 			
 			T = Transformation(T, transformation)
 			C = Transformation(C, transformation)
@@ -67,8 +67,8 @@ Framework<-function(deconv_type,
 			T = Transformation(Xtest$T, transformation)
 			C = Transformation(Xtrain$train_cellID, transformation)
 
-			T = Scaling(T, normalization_scT)
-			C = Scaling(C, normalization_scC)
+			T = Scaling(T, normalization_T)
+			C = Scaling(C, normalization_C)
 		}
 		#If a cell type is removed, only meaningful mixtures where that CT was present (proportion < 0) are kept:
 		if(to_remove != "none"){
