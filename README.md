@@ -87,7 +87,7 @@ python_home <- '/home/feng_shuo/miniconda3/envs/sccaf/bin/python'
 # Run SCCAF-D deconvolution
 results <- SCCAF_D(bulk = 'pseudobulk_Baron_T.rds',reference = 'integrated_baron.rds',python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
 ```
-We provide a detailed example of **SCCAF-D** usage in a Jupyter Notebook, which can be found [here](https://github.com/rnacentre/SCCAF-D/blob/main/SCCAF-D_example.ipynb). This example demonstrates the deconvolution process using **one** single-cell datasets, consisting of a total of **32523** cells, as the reference, and **five** bulk RNA-seq samples for deconvolution.
+We provide a detailed example of **SCCAF-D** usage in a Jupyter Notebook, which can be found [here](https://github.com/rnacentre/SCCAF-D/blob/main/SCCAF-D%20example.ipynb). This example demonstrates the deconvolution process using **one** single-cell datasets, consisting of a total of **32523** cells, as the reference, and **five** bulk RNA-seq samples for deconvolution.
 
 Processing this demo will take approximately **29.3** minutes on a server with 32 CPUs and 256 GB of RAM. For larger datasets, increased memory may be required to ensure efficient computation.
 
