@@ -36,7 +36,7 @@ SCCAF-D requires the following parameters to perform deconvolution:
 
 ## Installation
 
-To install the required [SCCAF](https://github.com/SCCAF/sccaf)package, use one of the following commands:
+To install the required [SCCAF](https://github.com/SCCAF/sccaf) package, use one of the following commands:
 
 ```shell
 conda install sccaf
