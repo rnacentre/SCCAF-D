@@ -1,88 +1,96 @@
-SCCAF-D
-=====
+# SCCAF-D: Single-Cell Analysis Framework for Deconvolution
+**SCCAF-D** is a novel method for **cell type deconvolution** using single-cell RNA-seq data as reference. By integrating multiple single-cell datasets and employing advanced machine learning techniques, SCCAF-D produces optimized reference data to ensure reliable and accurate deconvolution results. This approach provides valuable insights into the cellular composition and heterogeneity of biological samples.
 
-**SCCAF-D** is novel approach in single-cell data analysis, particularly in **cell type deconvolution**. This method leverages the integration of multiple single-cell datasets and employs sophisticated machine learning techniques to generate an optimised reference. By doing so, SCCAF-D ensures the production of reliable and accurate deconvolution results.
+## Metadata Requirements
 
-In SCCAF-D, the metadata associated with single-cell data must contain three essential columns:
+To perform deconvolution, the metadata of the single-cell datasets should contain the following essential columns:
 
-**cellID**: This column contains unique identifiers for individual cells in the dataset. Each cell is assigned a specific ID that distinguishes it from others in the dataset.
+- **cellID**: Unique identifiers for individual cells in the dataset.
+- **cellType**: Annotations or labels indicating the type of each cell.
+- **sampleID**: Identifiers for biological samples to facilitate comparative analysis across different conditions.
 
-**cellType**: The cellType column provides information about the type or identity of each cell. It assigns a specific label or annotation to indicate the cell type it represents. These cell type annotations are crucial for downstream analysis and interpretation.
+These three columns are critical for accurate cell type deconvolution using SCCAF-D.
 
-**sampleID**: This column specifies the sample. It helps organize the data and enables researchers to analyze cell type composition across different biological samples.
+## Parameters
 
-By including these three key metadata columns in the single-cell datasets, SCCAF-D can effectively perform cell type deconvolution and provide valuable insights into the cellular composition and heterogeneity within the analyzed samples.
+SCCAF-D requires the following parameters to perform deconvolution:
+   - **Bulk**: The bulk RNA-seq data used to be deconvolved.
+   - **Reference**: The reference data used for deconvolution.
+   - **Transformation** (string): The method for transforming both the bulk and reference data. Options include `'none'` (default), `'log'`, `'sqrt'`, and `'vst'`.
+   - **Deconv_type** (string): Deconvolution methods are categorized into bulk (`'bulk'`) and single-cell (`'sc'`) approaches based on the reference source. Bulk methods, such as `CIBERSORT` and `FARDEEP`, use a reference signature from sorted cell types or a marker gene list. In contrast, single-cell methods, such as `MuSiC` and `DWLS`, use single-cell datasets as reference data.
+   - **Normalization_C** (string): Normalization for reference data. Eighteen normalization methods are supported, including `'column'`, `'row'`, `'mean'`, `'column z-score'`, `'global z-score'`, `'column min-max'`, `'global min-max'`, `'LogNormalize'`, `'none'`, `'QN'`, `'TMM'`, `'UQ'`, `'median ratios'`, `'TPM'`, `'SCTransform'`, `'scran'`, `'scater'`, and `'Linnorm'`.
 
-**The concrete parameters include a list of 11 parameters**:
+   - **Normalization_T** (string): Normalization for bulk data. The same normalization methods as listed for reference data. **Suggestion**: If using the single-cell (`sc`) method for deconvolution, the choice for this parameter should match the reference data normalization.
 
-**Param[1]**: string. The name of bulk data used to be deconvolved.
-**Param[2]**: string. The name of reference data used for deconvolution.
-**Param[3]**: string. The four methods available for transforming both the bulk and reference data are none (default), log, sqrt, and vst.
-**Param[4]**: string. Deconvolution methods are categorised into bulk and single-cell (sc) approaches based on the reference source. Bulk methods, such as CIBERSORT and FARDEEP, use a reference signature from sorted cell types or a marker gene list, while ‘sc’ methods, like MuSiC and DWLS, use single-cell datasets as reference data.
-**Param[5]**: string. Normalization for reference data. 18 normalisation methods are supported, including column, row, mean, column z-score, global z-score, column min-max, global min-max, LogNormalize, none, QN, TMM, UQ, median ratios, TPM, SCTransform, scran, scater, and Linnorm.
-**Param[6]**: string. Normalization for bulk data. With normalization methods for bulk data as outlined in [5]. If using the sc method for deconvolution, this selection should be the same as in reference data. If using the bulk methods, this selection should be ‘all’.
-**Param[7]**: string. Twenty-five deconvolution algorithms are available for selection, including DWLS, FARDEEP, MuSiC, nnls, RLR, EpiDISH, OLS, EPIC, elasticNet, lasso, proportionsInAdmixture, ridge, CIBERSORT, SCDC, BisqueRNA, CDSeq, CPM, DCQ, DSA, DeconRNASeq, TIMER, deconf, dtangle, ssFrobenius, and ssKL.
-
-**Param[8]**: string. The number of cells selected during the preparation of simulated 'pseudobulk' from single-cell data.
-
-**Param[9]**: string. Whether to remove any cell types from the reference data.
-
-**Param[10]**: string. Select the number of cores to be used for deconvolution.
-**Param[11]**: string. Whether to perform data normalization or transformation first. T means the normalization first. F means the transformation first.
-
-
+   - **Method** (string): Twenty-five deconvolution algorithms are available, including `'DWLS'`, `'FARDEEP'`, `'MuSiC'`, `'nnls'`, `'RLR'`, `'EpiDISH'`, `'OLS'`, `'EPIC'`, `'elasticNet'`, `'lasso'`, `'proportionsInAdmixture'`, `'ridge'`, `'CIBERSORT'`, `'SCDC'`, `'BisqueRNA'`, `'CDSeq'`, `'CPM'`, `'DCQ'`, `'DSA'`, `'DeconRNASeq'`, `'TIMER'`, `'deconf'`, `'dtangle'`, `'ssFrobenius'`, and `'ssKL'`.
+   - **Number_cells** (integer): The number of cells to select when preparing simulated 'pseudobulk' from single-cell data.
+   - **To_remove** (string): Specify any cell types to exclude from the reference data.
+   - **Num_cores** (integer): The number of cores to use for parallelization during deconvolution.
+   - **NormTrans** (logical): Whether to perform data normalization or transformation first. `TRUE` indicates normalization first, while `FALSE` indicates transformation first.
+   - **Return_expr** (logical): Whether to return the estimated expression matrix of the bulk data. Default is `FALSE`.
+   - **Batch_key** (string): The parameter used to calculate highly variable genes in SCANPY.
+   - **Span** (numeric): The fraction of cells used when estimating variance in the loess model fit in SCANPY (when `flavor = 'seurat_v3'`).
+   - **Python_home** (string): The path to the Python executable.
 
 ----
 
-**To use SCCAF-D ensure the SCCAF package is installed:**
-```
+## Installation
+
+To install the required SCCAF package, use one of the following commands:
+
+```shell
 conda install sccaf
 ```
-Or
 
-```
+or
+
+```shell
 pip install sccaf
 ```
 
-**You will also need to install another packages:**
-```
-packages <- c("devtools", "BiocManager","data.table","ggplot2","tidyverse","reticulate","pheatmap",
-			  "Matrix","matrixStats",
-			  "gtools",
-			  "foreach","doMC","doSNOW", 
-			  "Seurat","sctransform", 
-			  "nnls","MASS","glmnet") 
+The installation of SCCAF takes about a few minutes.
 
-for (i in packages){ install.packages(i, character.only = TRUE)}
+Additionally, several R and Bioconductor packages are needed:
 
-packages1 = c('limma','edgeR','DESeq2','pcaMethods','BiocParallel','preprocessCore','scater','SingleCellExperiment','Linnorm','DeconRNASeq','multtest','GSEABase','annotate','genefilter','preprocessCore','graph','MAST','Biobase','sparseMatrixStats')
-for (i in packages1){ BiocManager::install(i, character.only = TRUE)}
+```R
+# CRAN packages
+packages <- c("devtools", "BiocManager", "data.table", "ggplot2", "tidyverse", 
+              "reticulate", "pheatmap", "Matrix", "matrixStats", "gtools",
+              "foreach", "doMC", "doSNOW", "Seurat", "sctransform", "nnls", 
+              "MASS", "glmnet","reshape2","quadprog","reshape","e1071","Seurat","ROCR",
+              "varhandle")
+install.packages(packages)
 
+# Bioconductor packages
+bioc_packages <- c('limma', 'edgeR', 'DESeq2', 'pcaMethods', 'BiocParallel', 
+                   'preprocessCore', 'scater', 'SingleCellExperiment', 'Linnorm',
+                   'DeconRNASeq', 'multtest', 'GSEABase', 'annotate', 'genefilter', 
+                   'graph', 'MAST', 'Biobase', 'sparseMatrixStats')
+BiocManager::install(bioc_packages)
 ```
-Example
-Usage within R environment
---
-```
-#Set a working directory and place the files used for analysis in this directory
+
+**Note**: Installing the required packages may take some time, depending on the user's R environment and network conditions. The installation process could take several minutes or even longer, potentially up to an hour.
+**Note**: if user wants to use other 24 deconvolution methods (except for DWLS) in SCCAF-D framework, please install packages mentioned in <a href="https://github.com/rnacentre/SCCAF-D/blob/main/install.md"> install.md </a> file. 
+## Example Usage in R
+
+```R
+# Set working directory to the location of your data
 setwd('***')
 
-#load SCCAF_D.R function
-source('./SCCAF_D.R')
+# Load the SCCAF-D R function
+source('SCCAF_D.R')
 
-#selection the parameters to conduct deconvolution
-param=c("bulk.rds",'single-reference.rds',"none","sc","TMM","TMM",'DWLS',10000,"none",1,'T')
+# Specify the path to the Python environment
+python_home <- '/home/feng_shuo/miniconda3/envs/sccaf/bin/python'
 
-#python_home:Specify the python to use
-results <- SCCAF_D(param,python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
+# Run SCCAF-D deconvolution
+results <- SCCAF_D(bulk = 'pseudobulk_Baron_T.rds',reference = 'integrated_baron.rds',python_home='/home/feng_shuo/miniconda3/envs/sccaf/bin/python')
 ```
+We provide a detailed example of **SCCAF-D** usage in a Jupyter Notebook, which can be found [here](https://github.com/rnacentre/SCCAF-D/blob/main/SCCAF-D_example.ipynb). This example demonstrates the deconvolution process using **one** single-cell datasets, consisting of a total of **32523** cells, as the reference, and **five** bulk RNA-seq samples for deconvolution.
 
-How to cite
------
-For citation please refer to this:
+Processing this demo will take approximately **29.3** minutes on a server with 32 CPUs and 256 GB of RAM. For larger datasets, increased memory may be required to ensure efficient computation.
 
-Feng *et al*. Alleviating batch effects in cell type deconvolution.
+## Citation
+To cite SCCAF-D, please refer to the following:
 
-The current version will be soon available at research square.
-
-
-
+> Shuo Feng, Liangfeng Huang, Anna Vathrakokili Pournara, Ziliang Huang, Xinlu Yang, Yongjian Zhang, Alvis Brazma, Ming Shi, Irene Papatheodorou, Zhichao Miao "Alleviating batch effects in cell type deconvolution." (Preprint available at Research Square)
