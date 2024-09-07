@@ -94,4 +94,4 @@ Processing this demo will take approximately **29.3** minutes on a server with 3
 ## Citation
 To cite SCCAF-D, please refer to the following:
 
-> Shuo Feng, Liangfeng Huang, Anna Vathrakokili Pournara, Ziliang Huang, Xinlu Yang, Yongjian Zhang, Alvis Brazma, Ming Shi, Irene Papatheodorou, Zhichao Miao "Alleviating batch effects in cell type deconvolution." (Preprint available at Research Square)
+> Shuo Feng, Liangfeng Huang, Anna Vathrakokili Pournara, Ziliang Huang, Xinlu Yang, Yongjian Zhang, Alvis Brazma, Ming Shi, Irene Papatheodorou, Zhichao Miao "Alleviating batch effects in cell type deconvolution." (Under review)
