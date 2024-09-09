@@ -34,7 +34,7 @@ SCCAF_D=function(bulk=bulk,reference=reference,transformation='none',deconv_type
     if (!reticulate::py_module_available("SCCAF")) {
         stop("python module SCCAF does not seem to be installed; - try running 'pip install SCCAF'")
     }
-    reticulate::source_python("/home/feng_shuo/deconvolution/SCCAF-D/scanpy_workflow.py")
+    reticulate::source_python("scanpy_workflow.py")
     #####
     pathway=getwd()
     ####
