@@ -4,7 +4,7 @@
 #' 
 #' @param param: a list of 11 parameters:
 #' 1: bulk name: The bulk dataset used to conduct deconvolution.
-#' 2: reference dataset name: The single-cell dataset used to conduct deconvolution.
+#' 2: reference name: The single-cell dataset used to conduct deconvolution.
 #' 3: Transformation: none (defalt), log, sqrt, vst. The choice whether to transform the dataset both bulk and single-cell dataset.
 #' 4: deconvolution type: bulk, sc. The different deconvolution types. We divide the methods into bulk and sc methods refer to the reference source, 
 #' like bulk methods includes the CIBERSORT, FARDEEP (reference is either a signature of sorted cell types or a marker gene list), 
@@ -18,13 +18,11 @@
 #' 9: remove cell type or not (none: default). Remove a cell type in bulk and singl-cell dataset before deconvolution.
 #' 10: number of cores used. 
 #' 11: Normalize first (T) or Transform first(F).
-#' 
-#' @return
-#' The deconvolution results as a table.
-#' @example
-#' @batch_key scanpy: scanpy.pp.highly_variable_genes
-#' @span: scanpy: scanpy.pp.highly_variable_genes
-#' @ python_home: Specify the python to use
+#' 12: Return_expr: logical. Whether to return the estimated expression matrix of bulk data. Default (FALSE).
+#' 13: Batch_key: string. The parameter used to calculate the highly variable genes in SCANPY.
+#' 14: Span: numeric. The parameter used to calculate the highly variable genes in SCANPY. The fraction of the data (cells) used when estimating the variance in the loess model fit if flavor = 'seurat_v3'.
+#' 15: Python_home: string. The path where python is located.
+
 SCCAF_D=function(bulk=bulk,reference=reference,transformation='none',deconv_type='sc',normalization_C='TMM',normalization_T='TMM',marker_strategy='all',method='DWLS',number_cells=10000,to_remove='none',num_cores=1,NormTrans=TRUE,return_expr=FALSE,batch_key='sampleID',span=0.3,python_home = Sys.which("python")) {
     reticulate::use_python(python_home)
     source("benchmark1.R")
