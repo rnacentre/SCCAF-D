@@ -67,6 +67,9 @@ bioc_packages <- c('limma', 'edgeR', 'DESeq2', 'pcaMethods', 'BiocParallel',
                    'DeconRNASeq', 'multtest', 'GSEABase', 'annotate', 'genefilter', 
                    'graph', 'MAST', 'Biobase', 'sparseMatrixStats')
 BiocManager::install(bioc_packages)
+
+# github packages
+devtools::install_github("cellgeni/sceasy")
 ```
 
 **Note**: Installing the required packages may take some time, depending on the user's R environment and network conditions. The installation process could take several minutes or even longer, potentially up to an hour.
