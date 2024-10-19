@@ -93,7 +93,9 @@ results <- SCCAF_D(bulk = 'pseudobulk_Baron_T.rds',reference = 'integrated_baron
 We provide a detailed example of **SCCAF-D** usage in a Jupyter Notebook, which can be found [here](https://github.com/rnacentre/SCCAF-D/blob/main/SCCAF-D%20example.ipynb). This example demonstrates the deconvolution process using integrated single-cell data, including **three** single-cell datasets, consisting of a total of **32523** cells, as the reference, and **five** bulk RNA-seq samples for deconvolution. Example data is available <a href="https://drive.google.com/drive/folders/1nMCtnaRN-5c-Tv5KxXl4QbXqOW1faxVz?usp=drive_link"> here</a>.
 
 Processing this demo will take approximately **30** minutes on a server with 32 CPUs and 256 GB of RAM. For larger datasets, increased memory may be required to ensure efficient computation.
-<img src="{{ site.url }}{{ site.baseurl }}/data/memory.png"style=" width:1150px; height:300px;object-fit: cover;border-radius:0%;display: block; margin: 0 auto;"/>
+
+We also test the memory of different algorithms,and the max memory of SCCAF-D is 33Gb.
+![memory](https://github.com/rnacentre/SCCAF-D/blob/main/data/memory.png)
 
 ## Citation
 To cite SCCAF-D, please refer to the following:
