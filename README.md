@@ -96,7 +96,7 @@ Processing this demo will take approximately **30** minutes on a server with 32 
 
 We also test the memory of different algorithms,and the max memory of SCCAF-D is 33Gb.
 ![memory](https://github.com/rnacentre/SCCAF-D/blob/main/data/github%E6%97%B6%E9%97%B4%E5%86%85%E5%AD%98.png)
-Fig. 1 Memory usage and runtime of selected deconvolution methods. (a) Maximum memory usage of different deconvolution methods. Each point represents a dataset, with colours indicating the deconvolution method. (b) The runtime of different simulated bulk dataset using SCCAF-D. The X-axis denotes the names of the simulated bulk datasets.
+**Fig. 1** Memory usage and runtime of selected deconvolution methods. (**a**) Maximum memory usage of different deconvolution methods. Each point represents a dataset, with colours indicating the deconvolution method. (**b**) The runtime of different simulated bulk dataset using SCCAF-D. The X-axis denotes the names of the simulated bulk datasets.
 
 
 
