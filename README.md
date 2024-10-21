@@ -95,13 +95,10 @@ We provide a detailed example of **SCCAF-D** usage in a Jupyter Notebook, which 
 Processing this demo will take approximately **30** minutes on a server with 32 CPUs and 256 GB of RAM. For larger datasets, increased memory may be required to ensure efficient computation.
 
 We also test the memory of different algorithms,and the max memory of SCCAF-D is 33Gb.
-![memory](https://github.com/rnacentre/SCCAF-D/blob/main/data/memory.png)
+![memory](https://github.com/rnacentre/SCCAF-D/blob/main/data/github%E6%97%B6%E9%97%B4%E5%86%85%E5%AD%98.png)
+Fig. 1 Memory usage and runtime of selected deconvolution methods. (a) Maximum memory usage of different deconvolution methods. Each point represents a dataset, with colours indicating the deconvolution method. (b) The runtime of different simulated bulk dataset using SCCAF-D. The X-axis denotes the names of the simulated bulk datasets.
 
-The average runtime of different algorithms
-![time](https://github.com/rnacentre/SCCAF-D/blob/main/data/runtime.png)
 
-The runtime usage of different simulated bulk data using SCCAF-D.
-![time_dataset](https://github.com/rnacentre/SCCAF-D/blob/main/data/dataset_runtime.png)
 
 ## Citation
 To cite SCCAF-D, please refer to the following:
