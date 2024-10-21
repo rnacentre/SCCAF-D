@@ -97,6 +97,12 @@ Processing this demo will take approximately **30** minutes on a server with 32 
 We also test the memory of different algorithms,and the max memory of SCCAF-D is 33Gb.
 ![memory](https://github.com/rnacentre/SCCAF-D/blob/main/data/memory.png)
 
+The average runtime of different algorithms
+![time](https://github.com/rnacentre/SCCAF-D/blob/main/data/runtime.pdf)
+
+The runtime usage of different simulated bulk data using SCCAF-D.
+![time_dataset](https://github.com/rnacentre/SCCAF-D/blob/main/data/dataset_runtime.pdf)
+
 ## Citation
 To cite SCCAF-D, please refer to the following:
 
