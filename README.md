@@ -1,3 +1,4 @@
+<a href="https://doi.org/10.5281/zenodo.14211887"><img src="https://zenodo.org/badge/795955983.svg" alt="DOI"></a>
 # SCCAF-D: Single-Cell Clustering Assessment Framework optimised reference for Deconvolution
 **SCCAF-D** is a novel framework for **cell type deconvolution** using single-cell RNA-seq data as reference. By integrating multiple single-cell datasets and employing advanced machine learning techniques, SCCAF-D produces optimized reference data to ensure reliable and accurate deconvolution results. This approach provides valuable insights into the cell composition and heterogeneity of biological samples.
 
