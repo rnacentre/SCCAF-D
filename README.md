@@ -104,4 +104,4 @@ To assess the scalability of the SCCAF-D method, we analyzed 20 distinct dataset
 ## Citation
 To cite SCCAF-D, please refer to the following:
 
-> Feng, S., Huang, L., Pournara, A.V. et al. Alleviating batch effects in cell type deconvolution with SCCAF-D. Nat Commun 15, 10867 (2024). https://doi.org/10.1038/s41467-024-55213-x <a href='https://www.nature.com/articles/s41467-024-55213-x#citeas'>Link</a>
+> Feng, S., Huang, L., Pournara, A.V. et al. Alleviating batch effects in cell type deconvolution with SCCAF-D. Nat Commun 15, 10867 (2024). https://doi.org/10.1038/s41467-024-55213-x.
