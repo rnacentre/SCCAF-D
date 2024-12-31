@@ -104,4 +104,4 @@ To assess the scalability of the SCCAF-D method, we analyzed 20 distinct dataset
 ## Citation
 To cite SCCAF-D, please refer to the following:
 
-> Shuo Feng, Liangfeng Huang, Anna Vathrakokili Pournara, Ziliang Huang, Xinlu Yang, Yongjian Zhang, Alvis Brazma, Ming Shi, Irene Papatheodorou, Zhichao Miao "Alleviating batch effects in cell type deconvolution." (<a href='https://www.nature.com/articles/s41467-024-55213-x'> </a>)
+> Shuo Feng, Liangfeng Huang, Anna Vathrakokili Pournara, Ziliang Huang, Xinlu Yang, Yongjian Zhang, Alvis Brazma, Ming Shi, Irene Papatheodorou, Zhichao Miao "Alleviating batch effects in cell type deconvolution." (<a href='https://www.nature.com/articles/s41467-024-55213-x'> Article link</a>)
